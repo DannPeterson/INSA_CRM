@@ -1,0 +1,44 @@
+.mat-column-name {
+  width: 12%;
+}
+
+.mat-column-invoice {
+  width: 13%;
+}
+
+.mat-column-url {
+  width: 35%;
+}
+
+.mat-column-username {
+  width: 12%;
+}
+
+.mat-column-password {
+  width: 12%;
+}
+
+.mat-column-comment {
+  width: 16%;
+}
+
+table{
+  width: 100%;
+  table-layout: fixed;
+}
+
+td mat-form-field {
+  width: 90%;
+}
+
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+
+.container-xl {
+  padding-top: 70px;
+}

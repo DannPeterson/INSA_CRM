@@ -1,0 +1,115 @@
+.button-green {
+  background-color: rgba(197, 255, 172, 0.37);
+}
+
+.button-red {
+  background-color: rgba(255, 179, 179, 0.55);
+}
+
+.datepicker-width {
+  width: 194px;
+}
+
+.datepicker-part {
+  width: 130px;
+}
+
+.short-input{
+  width: 100px;
+}
+
+.sidenav-button {
+  position:fixed;
+  top:45px;
+  left:20px;
+  z-index: 2 !important;
+  color: red;
+}
+
+.mat-row:hover {
+  background-color: #f5f5f5; /* Change this to any color you want */
+}
+
+table{
+  width: 100%;
+  table-layout: fixed;
+}
+
+.mat-column-m {
+  width: 5%;
+}
+
+.mat-column-policyType {
+  width: 5%;
+}
+
+.mat-column-client {
+  width: 11%;
+}
+
+.mat-column-object {
+  width: 12%;
+}
+
+.mat-column-insurer {
+  width: 4%;
+}
+
+.mat-column-policy {
+  width: 8%;
+}
+
+.mat-column-start {
+  width: 7%;
+}
+
+.mat-column-end {
+  width: 7%;
+}
+
+.mat-column-parts {
+  width: 4%;
+}
+
+.mat-column-sum {
+  width: 5%;
+}
+
+.mat-column-paymentDate {
+  width: 7%;
+}
+
+.mat-column-paid {
+  width: 5%;
+}
+
+.mat-column-datePaid {
+  width: 7%;
+}
+
+.mat-column-invoice {
+  width: 5%;
+}
+
+.mat-column-percent {
+  width: 3%;
+}
+
+.mat-column-provision {
+  width: 5%;
+}
+
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.mat-elevation-z8 td {
+  padding-right: 5px;
+}

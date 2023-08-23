@@ -1,0 +1,17 @@
+<mat-form-field appearance="fill">
+  <mat-label>Клиент</mat-label>
+  <input
+    matInput
+    name="policyClient"
+    id="policyClient"
+    [formControl]="clientSearchControl"
+    [matAutocomplete]="auto"
+    placeholder="Search Clients"
+    (blur)="onBlur()"
+  />
+  <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn" (optionSelected)="onSelectionChange($event.option.value)">
+    <mat-option *ngFor="let client of filteredClients | async" [value]="client">
+      {{ client.name }}
+    </mat-option>
+  </mat-autocomplete>
+</mat-form-field>

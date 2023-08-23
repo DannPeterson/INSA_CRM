@@ -1,0 +1,406 @@
+<mat-sidenav-container>
+  <mat-sidenav #snav style="width: 220px;" fixedTopGap="80" [mode]="'side'" [fixedInViewport]="true">
+
+    <div class="ps-2 pe-1">
+
+      <div class="row pt-2" style="width: 220px;">
+        <mat-form-field>
+          <mat-label>Имя</mat-label>
+          <input matInput
+                 (change)="searchClients()"
+                 [formControl]="searchName">
+        </mat-form-field>
+      </div>
+
+      <div class="row pt-2" style="width: 220px;">
+        <mat-form-field>
+          <mat-label>Email</mat-label>
+          <input matInput
+                 (change)="searchClients()"
+                 [formControl]="searchEmail">
+        </mat-form-field>
+      </div>
+
+      <div class="row pt-2" style="width: 220px;">
+        <mat-form-field>
+          <mat-label>Телефон</mat-label>
+          <input matInput
+                 (change)="searchClients()"
+                 [formControl]="searchMobile">
+        </mat-form-field>
+      </div>
+
+      <div class="row" style="width: 220px;">
+        <button mat-stroked-button color="primary" (click)="cleanSearchFields()">Очистить</button>
+      </div>
+
+    </div>
+
+    <div class="ps-2 pe-1 pt-5">
+      <div class="row" style="width: 220px;">
+        <div class="col">
+          <button mat-stroked-button color="primary"
+                  style="width: 100%"
+                  (click)="onNewClientModal(new_client_modal)">
+            <mat-icon>person_add</mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+    <div class="container-lg pt-5">
+
+      <button mat-icon-button (click)="snav.toggle()" class="sidenav-button">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <table mat-table [dataSource]="clients" class="mat-elevation-z8">
+
+        <ng-container matColumnDef="col1">
+          <th mat-header-cell *matHeaderCellDef>Изменить</th>
+          <td mat-cell *matCellDef="let client">
+            <button mat-stroked-button color="primary"
+                    (click)="onEditClientModal(client, client_modal)">
+              <mat-icon>person</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="col2">
+          <th mat-header-cell *matHeaderCellDef>Имя</th>
+          <td mat-cell *matCellDef="let client">
+            {{client.name}}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="col3">
+          <th mat-header-cell *matHeaderCellDef>Код</th>
+          <td mat-cell *matCellDef="let client"> {{client.code}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="col4">
+          <th mat-header-cell *matHeaderCellDef>Адрес</th>
+          <td mat-cell *matCellDef="let client"> {{client.address}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="col5">
+          <th mat-header-cell *matHeaderCellDef>Телефоны</th>
+          <td mat-cell *matCellDef="let client">
+            <div class="row">
+              {{client.phone}}
+            </div>
+            <div class="row">
+              {{client.mobile1}}
+            </div>
+            <div class="row">
+              {{client.mobile2}}
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="col6">
+          <th mat-header-cell *matHeaderCellDef>Email</th>
+          <td mat-cell *matCellDef="let client">
+            <div class="row">
+              {{client.email1}}
+            </div>
+            <div class="row">
+              {{client.email2}}
+            </div>
+            <div class="row">
+              {{client.email3}}
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator
+        [length]="totalClients"
+        [pageSize]="pageSize"
+        [pageSizeOptions]="[10, 25, 50, 100]"
+        (page)="onPageChange($event)"
+      >
+      </mat-paginator>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- Edit Client modal -->
+<ng-template #client_modal>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="card-title pb-2 d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <h2 class="mb-0">Редактировать клиента</h2>
+          </div>
+          <button type="button" class="btn btn-outline-secondary ms-2" (click)="modalRef.hide()">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="row pt-3">
+
+        <div class="col-4">
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Имя</mat-label>
+              <input matInput placeholder="Имя"
+                     [(ngModel)]="selectedClient.name">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Код</mat-label>
+              <input matInput placeholder="Код"
+                     [(ngModel)]="selectedClient.code">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Адрес</mat-label>
+              <input matInput placeholder="Адрес"
+                     [(ngModel)]="selectedClient.address">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Телефон</mat-label>
+              <input matInput placeholder="Телефон"
+                     [(ngModel)]="selectedClient.phone">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Представитель</mat-label>
+              <input matInput placeholder="Представитель"
+                     [(ngModel)]="selectedClient.representative">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Email 1</mat-label>
+              <input matInput placeholder="Email 1"
+                     [(ngModel)]="selectedClient.email1">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Email 2</mat-label>
+              <input matInput placeholder="Email 2"
+                     [(ngModel)]="selectedClient.email2">
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Email 3</mat-label>
+              <input matInput placeholder="Email 3"
+                     [(ngModel)]="selectedClient.email3">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Мобильный 1</mat-label>
+              <input matInput placeholder="Мобильный 1"
+                     [(ngModel)]="selectedClient.mobile1">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Мобильный 2</mat-label>
+              <input matInput placeholder="Мобильный 2"
+                     [(ngModel)]="selectedClient.mobile2">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <div class="col-12 d-flex justify-content-end">
+              <mat-form-field appearance="fill" style="width: 100%">
+                <mat-label>Банк</mat-label>
+                <mat-select [formControl]="selectedClientBank">
+                  <mat-option *ngFor="let bank of banks" [value]="bank">
+                    {{ bank.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Банковский счет</mat-label>
+              <input matInput placeholder="Банковский счет"
+                     [(ngModel)]="selectedClient.bankAccount">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="row pt-3">
+        <div class="row">
+          <mat-form-field appearance="fill" style="width: 100%">
+            <mat-label>Комментарий</mat-label>
+            <textarea matInput [(ngModel)]="selectedClient.comment"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end pt-3">
+        <button mat-stroked-button color="primary" class="me-2" (click)="onClientSave()">Сохранить</button>
+        <button mat-stroked-button color="warn" (click)="modalRef.hide()">Отмена</button>
+      </div>
+
+    </div>
+  </div>
+</ng-template>
+
+
+<!-- New Client modal -->
+<ng-template #new_client_modal>
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="card-title pb-2 d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <h2 class="mb-0">Добавить клиента</h2>
+          </div>
+          <button type="button" class="btn btn-outline-secondary ms-2" (click)="modalRef.hide()">
+            <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="row pt-3">
+
+        <div class="col-4">
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Имя</mat-label>
+              <input matInput placeholder="Имя"
+                     [(ngModel)]="modalNewClient.name">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Код</mat-label>
+              <input matInput placeholder="Код"
+                     [(ngModel)]="modalNewClient.code">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Адрес</mat-label>
+              <input matInput placeholder="Адрес"
+                     [(ngModel)]="modalNewClient.address">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Телефон</mat-label>
+              <input matInput placeholder="Телефон"
+                     [(ngModel)]="modalNewClient.phone">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Представитель</mat-label>
+              <input matInput placeholder="Представитель"
+                     [(ngModel)]="modalNewClient.representative">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Email 1</mat-label>
+              <input matInput placeholder="Email 1"
+                     [(ngModel)]="modalNewClient.email1">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Email 2</mat-label>
+              <input matInput placeholder="Email 2"
+                     [(ngModel)]="modalNewClient.email2">
+            </mat-form-field>
+          </div>
+
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Email 3</mat-label>
+              <input matInput placeholder="Email 3"
+                     [(ngModel)]="modalNewClient.email3">
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="col-4">
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Мобильный 1</mat-label>
+              <input matInput placeholder="Мобильный 1"
+                     [(ngModel)]="modalNewClient.mobile1">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Мобильный 2</mat-label>
+              <input matInput placeholder="Мобильный 2"
+                     [(ngModel)]="modalNewClient.mobile2">
+            </mat-form-field>
+          </div>
+          <div class="row">
+            <div class="col-12 d-flex justify-content-end">
+              <mat-form-field appearance="fill" style="width: 100%">
+                <mat-label>Банк</mat-label>
+                <mat-select [formControl]="modalNewClientBank">
+                  <mat-option *ngFor="let bank of banks" [value]="bank">
+                    {{ bank.name }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="row">
+            <mat-form-field appearance="fill" style="width: 100%">
+              <mat-label>Банковский счет</mat-label>
+              <input matInput placeholder="Банковский счет"
+                     [(ngModel)]="modalNewClient.bankAccount">
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <div class="row pt-3">
+        <div class="row">
+          <mat-form-field appearance="fill" style="width: 100%">
+            <mat-label>Комментарий</mat-label>
+            <textarea matInput [(ngModel)]="modalNewClient.comment"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end pt-3">
+        <button mat-stroked-button color="primary" class="me-2" (click)="onNewClientSave()">Сохранить</button>
+        <button mat-stroked-button color="warn" (click)="modalRef.hide()">Отмена</button>
+      </div>
+
+    </div>
+  </div>
+</ng-template>

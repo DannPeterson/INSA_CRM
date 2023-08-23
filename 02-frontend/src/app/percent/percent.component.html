@@ -1,0 +1,31 @@
+<div class="container-lg percent-container">
+  <div class="pb-2" id="header">
+    <h1 class="text-center">Проценты</h1>
+  </div>
+
+  <div id="percent-table">
+    <mat-table [dataSource]="policyTypes">
+      <!-- Type Column -->
+      <ng-container matColumnDef="type">
+        <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+        <mat-cell *matCellDef="let policyType"> {{policyType}} </mat-cell>
+      </ng-container>
+
+      <!-- Insurer Columns -->
+      <ng-container *ngFor="let insurer of displayedColumns; let i = index" [matColumnDef]="insurer">
+        <mat-header-cell *matHeaderCellDef> {{insurer}} </mat-header-cell>
+        <mat-cell *matCellDef="let policyType" >
+          <mat-form-field class="percent-cell">
+            <input matInput [ngModel]="getCellPercent(policyType, insurer) | number:'1.1-1'" (ngModelChange)="updatePercent($event, policyType, insurer)" (keypress)="numberOnly($event)">
+          </mat-form-field>
+        </mat-cell>
+      </ng-container>
+
+      <!-- Row Definition -->
+      <mat-header-row *matHeaderRowDef="allColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: allColumns;"></mat-row>
+    </mat-table>
+
+  </div>
+
+</div>

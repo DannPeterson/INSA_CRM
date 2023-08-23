@@ -1,0 +1,115 @@
+.button-green {
+  background-color: rgba(197, 255, 172, 0.37);
+}
+
+.button-red {
+  background-color: rgba(255, 179, 179, 0.55);
+}
+
+.datepicker-width {
+  width: 194px;
+}
+
+.datepicker-part {
+  width: 130px;
+}
+
+.short-input{
+  width: 100px;
+}
+
+.sidenav-button {
+  position:fixed;
+  top:45px;
+  left:20px;
+  z-index: 2 !important;
+  color: red;
+}
+
+.client-search {
+  z-index: 2001 !important;
+}
+
+table{
+  width: 100%;
+  table-layout: fixed;
+}
+
+.mat-column-menu {
+  width: 5%;
+}
+
+.mat-column-policyNumber {
+  width: 10%;
+}
+
+.mat-column-insurer {
+  width: 10%;
+}
+
+.mat-column-client {
+  width: 14%;
+}
+
+.mat-column-object {
+  width: 19%;
+}
+
+.mat-column-start {
+  width: 7%;
+}
+
+.mat-column-end {
+  width: 7%;
+}
+
+.mat-column-policySum {
+  width: 5%;
+}
+
+.mat-column-parts {
+  width: 3%;
+}
+
+.mat-column-part {
+  width: 3%;
+}
+
+.mat-column-partSum {
+  width: 5%;
+}
+
+.mat-column-partStart {
+  width: 7%;
+}
+
+.mat-column-reminder {
+  width: 5%;
+}
+
+.mat-row:hover {
+  background-color: #f5f5f5; /* Change this to any color you want */
+}
+
+td mat-form-field {
+  width: 90%;
+}
+
+td {
+  vertical-align: baseline;
+}
+
+.mat-elevation-z8 td {
+  padding-right: 10px;
+}
+
+.truncate-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.bold {
+  font-weight: bold;
+}

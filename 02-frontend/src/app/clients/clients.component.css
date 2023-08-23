@@ -1,0 +1,36 @@
+.mat-column-col1 {
+  width: 10%;
+}
+
+.mat-column-col2 {
+  width: 15%;
+}
+
+.mat-column-col3 {
+  width: 13%;
+}
+
+.mat-column-col4 {
+  width: 25%;
+}
+
+.mat-column-col5 {
+  width: 17%;
+}
+
+.mat-column-col6 {
+  width: 20%;
+}
+
+table{
+  width: 100%;
+  table-layout: fixed;
+}
+
+.sidenav-button {
+  position:fixed;
+  top:45px;
+  left:20px;
+  z-index: 2 !important;
+  color: red;
+}

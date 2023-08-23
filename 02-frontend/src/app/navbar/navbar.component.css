@@ -1,0 +1,19 @@
+.container-lg {
+  max-width: 1100px;
+}
+
+nav.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+div.version {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.version-brand {
+  color: rgba(255, 255, 255, 0.5); /* Полупрозрачный белый */
+  font-size: 0.8rem; /* 80% от исходного размера */
+}
