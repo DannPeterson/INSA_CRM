@@ -28,10 +28,11 @@ public class UniqueFolderNumberService {
         if (uniqueFolderNumber.getDate().equals(LocalDate.now())) {
             // если последняя запись от сегодня, то увеличиваем на 1 и возвращаем строку
             int lastNumber = uniqueFolderNumber.getLastUsedNumber() + 1;
-            uniqueFolderNumber = new UniqueFolderNumber(1L, LocalDate.now(), lastNumber);
+            uniqueFolderNumber.setLastUsedNumber(lastNumber);
         } else {
             // если последняя запись не сегодня - создаем первую сегодняшнюю запись и возвращаем строку
-            uniqueFolderNumber = new UniqueFolderNumber(1L, LocalDate.now(), 1);
+            uniqueFolderNumber.setDate(LocalDate.now());
+            uniqueFolderNumber.setLastUsedNumber(1);
         }
 
         uniqueFolderNumberRepository.save(uniqueFolderNumber);
