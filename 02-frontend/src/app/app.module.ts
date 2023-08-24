@@ -52,6 +52,7 @@ import { AgentReportComponent } from './agent-report/agent-report.component';
 import { InsurerReportComponent } from './insurer-report/insurer-report.component';
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import { InsurerReportControlComponent } from './insurer-report-control/insurer-report-control.component';
+import { DebtsComponent } from './debts/debts.component';
 
 export class CustomDateAdapter extends NativeDateAdapter {
   format(date: Date, displayFormat: Object): string {
@@ -100,7 +101,8 @@ export const CUSTOM_DATE_FORMATS = {
     InsurerComponent,
     AgentReportComponent,
     InsurerReportComponent,
-    InsurerReportControlComponent
+    InsurerReportControlComponent,
+    DebtsComponent
   ],
     imports: [
         BrowserModule,
