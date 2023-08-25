@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,10 +70,13 @@ public class PolicyPartResource {
     @GetMapping("/agent/{agentId}")
     public List<PolicyPart> findPolicyPartsForAgentReport(
             @PathVariable("agentId") Long agentId,
-            @RequestParam(value = "start") LocalDate start,
-            @RequestParam(value = "end") LocalDate end,
+            @RequestParam(value = "start") String startUTC,
+            @RequestParam(value = "end") String endUTC,
             @RequestParam(value = "payment") int payment
     ) {
+        LocalDate start = LocalDate.parse(startUTC, DateTimeFormatter.ISO_DATE);
+        LocalDate end = LocalDate.parse(endUTC, DateTimeFormatter.ISO_DATE);
+
         switch (payment) {
             case AGENT_REPORT_BY_PART_DATE:
                 return policyPartService.findPolicyPartsByAgentAndDateBetween(agentId, start, end);
@@ -90,10 +94,13 @@ public class PolicyPartResource {
             @PathVariable("insurerId") Long insurerId,
             @RequestParam(value = "policyTypeId", required = false) Long policyTypeId,
             @RequestParam(value = "paymentTypeId", required = false) Long paymentTypeId,
-            @RequestParam(value = "start") LocalDate start,
-            @RequestParam(value = "end") LocalDate end,
+            @RequestParam(value = "start") String startUTC,
+            @RequestParam(value = "end") String endUTC,
             @RequestParam(value = "type") int type
     ) {
+        LocalDate start = LocalDate.parse(startUTC, DateTimeFormatter.ISO_DATE);
+        LocalDate end = LocalDate.parse(endUTC, DateTimeFormatter.ISO_DATE);
+
         switch (type) {
             case INSURER_REPORT_BY_PART_DATE_PAID:
                 return policyPartService.findPolicyPartsByInsurerAndTypeAndPayment_byPartDate_Paid(insurerId, policyTypeId, paymentTypeId, start, end);
@@ -116,11 +123,13 @@ public class PolicyPartResource {
     List<PolicyPart> findPolicyPartsForInsurerControlReport(
             @PathVariable("insurerId") Long insurerId,
             @RequestParam(value = "policyTypeId", required = false) Long policyTypeId,
-            @RequestParam(value = "date") LocalDate date,
+            @RequestParam(value = "start") String dateUtc,
             @RequestParam(value = "client", required = false) String client,
             @RequestParam(value = "policy", required = false) String policy,
             @RequestParam(value = "type") int type
     ) {
+        LocalDate date = LocalDate.parse(dateUtc, DateTimeFormatter.ISO_DATE);
+
         switch (type){
             case INSURER_CONTROL_REPORT_BY_PART_DATE_PAID:
                 return policyPartService.findPolicyPartsByInsurerAndDate_Paid(insurerId, date, client, policy, policyTypeId);
@@ -141,5 +150,11 @@ public class PolicyPartResource {
     @PostMapping("/first-parts")
     public List<PolicyPart> findFirstPartsByPolicyIds(@RequestBody List<Long> policyIds) {
         return policyPartService.findFirstPartsByPolicyIds(policyIds);
+    }
+
+    @GetMapping("/debts")
+    public List<PolicyPart> findAllDebts() {
+        List<PolicyPart> result = policyPartService.findAllDebts();
+        return policyPartService.findAllDebts();
     }
 }

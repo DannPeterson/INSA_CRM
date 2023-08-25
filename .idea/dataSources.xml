@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="insaDB" uuid="93dbb19c-d4a2-4d00-90b0-ed3d7289b795">
-      <driver-ref>sqlite.xerial</driver-ref>
+    <data-source source="LOCAL" name="@localhost insa" uuid="644b9dfa-166a-4985-b3ee-4663446d1f0a">
+      <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\Users\danii\Desktop\INSA_CRM\01-backend\insaDB.db</jdbc-url>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/db_insa</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

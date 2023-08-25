@@ -7,10 +7,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="BackEnd-migration" />
+        <module name="crm-app (2)" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="BackEnd-main" target="1.8" />
+      <module name="BackEnd-migration" target="1.8" />
       <module name="crm-app" target="1.8" />
       <module name="crm-app-migration" target="1.8" />
     </bytecodeTargetLevel>
@@ -20,6 +22,8 @@
       <module name="BackEnd-main" options="-parameters" />
       <module name="BackEnd-migration" options="-parameters" />
       <module name="crm-app" options="-parameters" />
+      <module name="crm-app (1)" options="-parameters" />
+      <module name="crm-app (2)" options="-parameters" />
       <module name="crm-app-migration" options="-parameters" />
     </option>
   </component>

@@ -32,43 +32,43 @@
 
 
 .mat-column-menu {
-  width: 5%;
+  width: 4%;
 }
 
 .mat-column-policyType {
-  width: 5%;
+  width: 3%;
 }
 
 .mat-column-paymentType {
-  width: 5%;
+  width: 3%;
 }
 
 .mat-column-client {
-  width: 5%;
+  width: 10%;
 }
 
 .mat-column-object {
-  width: 5%;
+  width: 13%;
 }
 
 .mat-column-insurer {
-  width: 5%;
+  width: 4%;
 }
 
 .mat-column-agent {
-  width: 5%;
+  width: 3%;
 }
 
 .mat-column-policyNumber {
-  width: 5%;
+  width: 10%;
 }
 
 .mat-column-startDate {
-  width: 5%;
+  width: 6%;
 }
 
 .mat-column-endDate {
-  width: 5%;
+  width: 6%;
 }
 
 .mat-column-policySum {
@@ -76,11 +76,11 @@
 }
 
 .mat-column-parts {
-  width: 5%;
+  width: 3%;
 }
 
 .mat-column-partDate {
-  width: 5%;
+  width: 6%;
 }
 
 .mat-column-invoice {
@@ -88,7 +88,7 @@
 }
 
 .mat-column-maxPaymentDay {
-  width: 5%;
+  width: 6%;
 }
 
 .mat-column-paymentSum {
@@ -96,11 +96,11 @@
 }
 
 .mat-column-percent {
-  width: 5%;
+  width: 3%;
 }
 
 .mat-column-provision {
-  width: 5%;
+  width: 4%;
 }
 
 table{

@@ -145,4 +145,8 @@ public class PolicyPartService {
     public List<PolicyPart> findPolicyPartsByInsurerAndDate_Debt(Long insurerId, LocalDate date, String policyNumber, String clientName, Long policyTypeId) {
         return policyPartRepository.findPolicyPartsByInsurerAndDate_Debt(insurerId, date, policyNumber, clientName, policyTypeId);
     }
+
+    public List<PolicyPart> findAllDebts() {
+        return policyPartRepository.findAllDebts();
+    }
 }

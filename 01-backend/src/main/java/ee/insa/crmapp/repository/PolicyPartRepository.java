@@ -42,13 +42,25 @@ public interface PolicyPartRepository extends JpaRepository<PolicyPart, Long> {
 
     //AGENT REPORT
     @Query("SELECT pp FROM PolicyPart pp WHERE pp.policy.agent.id = :agentId AND pp.policy.stopDate IS NULL AND pp.date BETWEEN :start AND :end")
-    List<PolicyPart> findPolicyPartsByAgentAndDateBetween(@Param("agentId") long agentId, @Param("start") LocalDate start, @Param("end") LocalDate end);
+    List<PolicyPart> findPolicyPartsByAgentAndDateBetween(
+            @Param("agentId") long agentId,
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end
+    );
 
     @Query("SELECT pp FROM PolicyPart pp WHERE pp.policy.agent.id = :agentId AND pp.policy.stopDate IS NULL AND pp.datePaid BETWEEN :start AND :end")
-    List<PolicyPart> findPolicyPartsByAgentAndDatePaidBetween(@Param("agentId") long agentId, @Param("start") LocalDate start, @Param("end") LocalDate end);
+    List<PolicyPart> findPolicyPartsByAgentAndDatePaidBetween(
+            @Param("agentId") long agentId,
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end
+    );
 
     @Query("SELECT pp FROM PolicyPart pp WHERE pp.policy.agent.id = :agentId AND pp.policy.stopDate IS NULL AND pp.date BETWEEN :start AND :end AND pp.datePaid IS NULL")
-    List<PolicyPart> findPolicyPartsByAgentAndDateBetweenAndDatePaidIsNull(@Param("agentId") long agentId, @Param("start") LocalDate start, @Param("end") LocalDate end);
+    List<PolicyPart> findPolicyPartsByAgentAndDateBetweenAndDatePaidIsNull(
+            @Param("agentId") long agentId,
+            @Param("start") LocalDate start,
+            @Param("end") LocalDate end
+    );
 
     @Query("SELECT pp FROM PolicyPart pp WHERE pp.policy.id IN :policyIds AND pp.part = 1")
     List<PolicyPart> findFirstPartsByPolicyIds(@Param("policyIds") List<Long> policyIds);
@@ -180,4 +192,12 @@ public interface PolicyPartRepository extends JpaRepository<PolicyPart, Long> {
                                                           @Param("policyNumber") String policyNumber,
                                                           @Param("clientName") String clientName,
                                                           @Param("policyTypeId") Long policyTypeId);
+
+    //DEBTS
+    @Query("SELECT pp FROM PolicyPart pp " +
+            "WHERE (pp.datePaid IS NULL AND pp.sumReal = 0 AND pp.invoice IS NULL)" +
+            " OR " +
+            "(pp.datePaid IS NULL AND pp.sumReal = 0 AND pp.invoice IS NOT NULL AND pp.invoice.maxDate < CURRENT_DATE) " +
+            "ORDER BY pp.date ASC")
+    List<PolicyPart> findAllDebts();
 }

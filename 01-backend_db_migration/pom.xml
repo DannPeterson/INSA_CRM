@@ -11,7 +11,7 @@
 	<groupId>ee.insa</groupId>
 	<artifactId>crm-app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>crm-app</name>
+	<name>crm-app-migration</name>
 	<description>CRM for Insa insurance</description>
 
 	<properties>

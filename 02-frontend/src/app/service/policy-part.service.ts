@@ -8,6 +8,7 @@ import {Agent} from "../model/agent";
 import {Insurer} from "../model/insurer";
 import {PolicyType} from "../model/policytype";
 import {PaymentType} from "../model/paymenttype";
+import * as moment from 'moment';
 
 @Injectable({
   providedIn: 'root'
@@ -36,15 +37,16 @@ export class PolicyPartService {
   }
 
   public searchAgentParts(agent: Agent, start: Date, end: Date, payment: number): Observable<PolicyPart[]> {
-    let startStr = start.toISOString().substring(0, 10);
-    let endStr = end.toISOString().substring(0, 10);
+    let startStr = moment(start).add(1, 'day').utc().format().substring(0, 10);;
+    let endStr = moment(end).add(1, 'day').utc().format().substring(0, 10);;
+    console.log(startStr, endStr);
     let queryParams = `start=${startStr}&end=${endStr}&payment=${payment}`;
     return this.http.get<PolicyPart[]>(`${this.host}/policy-part/agent/${agent.id}?${queryParams}`);
   }
 
   public searchInsurerParts(insurer: Insurer, policyType: PolicyType, paymentType: PaymentType, start: Date, end: Date, type: number): Observable<PolicyPart[]> {
-    let startStr = start.toISOString().substring(0, 10);
-    let endStr = end.toISOString().substring(0, 10);
+    let startStr = moment(start).add(1, 'day').utc().format().substring(0, 10);;
+    let endStr = moment(end).add(1, 'day').utc().format().substring(0, 10);;
     let queryParams = '';
     if(policyType && policyType.id) queryParams += `&policyTypeId=${policyType.id}`;
     if(paymentType && paymentType.id) queryParams += `&paymentTypeId=${paymentType.id}`;
@@ -53,7 +55,7 @@ export class PolicyPartService {
   }
 
   public searchInsurerControlParts(insurer: Insurer, policyType: PolicyType, date: Date, client: string, policy: string, type: number): Observable<PolicyPart[]> {
-    let dateStr = date.toISOString().substring(0, 10);
+    let dateStr = moment(date).add(1, 'day').utc().format().substring(0, 10);;
     let queryParams = '';
     if(policyType && policyType.id) queryParams += `&policyTypeId=${policyType.id}`;
     if(client) queryParams += `&client=${client}`;
@@ -68,5 +70,9 @@ export class PolicyPartService {
 
   public getFirstParts(policyIds: number[]): Observable<PolicyPart[]> {
     return this.http.post<PolicyPart[]>(`${this.host}/policy-part/first-parts`, policyIds);
+  }
+
+  public findAllDebts(): Observable<PolicyPart[]> {
+    return this.http.get<PolicyPart[]>(`${this.host}/policy-part/debts`);
   }
 }

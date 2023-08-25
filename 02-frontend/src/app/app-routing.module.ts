@@ -9,6 +9,7 @@ import {InsurerComponent} from "./insurer/insurer.component";
 import {AgentReportComponent} from "./agent-report/agent-report.component";
 import {InsurerReportComponent} from "./insurer-report/insurer-report.component";
 import {InsurerReportControlComponent} from "./insurer-report-control/insurer-report-control.component";
+import {DebtsComponent} from "./debts/debts.component";
 
 const routes: Routes = [
   { path: 'main', component: MainComponent },
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path: 'agent-report', component: AgentReportComponent },
   { path: 'insurer-report', component: InsurerReportComponent },
   { path: 'insurer-report-control', component: InsurerReportControlComponent },
+  { path: 'debts', component: DebtsComponent },
   { path: '', redirectTo: '/main', pathMatch: 'full' },
   { path: 'index.html', redirectTo: '/index.html' }
 ];

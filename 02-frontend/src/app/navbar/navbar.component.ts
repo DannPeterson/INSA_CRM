@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
     '/agent-report': 'Отчет по агентам',
     '/insurer-report': 'Отчет по страховым кампаниям',
     '/insurer-report-control': 'Контроль платежей по страховым кампаниям',
+    '/debts': 'Долги',
   };
   constructor(private router: Router) { }
 
