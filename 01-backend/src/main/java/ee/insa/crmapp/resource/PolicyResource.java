@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(path = {"/policy"})
+@RequestMapping(path = {"api/policy"})
 public class PolicyResource {
     private PolicyService policyService;
     private PolicyPartService policyPartService;

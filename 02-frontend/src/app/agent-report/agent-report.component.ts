@@ -750,6 +750,7 @@ export class AgentReportComponent implements OnInit {
           if(this.modalPolicy.paymentType.type != 'Ülekanne') {
             this.modalPolicy.paymentType = this.paymentTypes.find(pt => pt.type === 'Ülekanne');
             this.updateExistingModalPolicy(true);
+            this.fillModalPolicyFormControls();
           }
         }
       );

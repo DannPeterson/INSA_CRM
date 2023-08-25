@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = {"/agent"})
+@RequestMapping(path = {"api/agent"})
 public class AgentResource {
     private final AgentService agentService;
 

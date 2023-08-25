@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/property")
+@RequestMapping("api/property")
 public class PropertyResource {
     private final AppConfig appConfig;
 

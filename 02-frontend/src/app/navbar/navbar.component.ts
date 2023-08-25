@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, NavigationEnd, Router} from "@angular/router";
 import {filter} from "rxjs/operators";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-navbar',
@@ -23,13 +24,14 @@ export class NavbarComponent implements OnInit {
     '/insurer-report-control': 'Контроль платежей по страховым кампаниям',
     '/debts': 'Долги',
   };
-  constructor(private router: Router) { }
+  constructor(private router: Router, private titleService: Title) { }
 
   ngOnInit(): void {
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd)
     ).subscribe((event: NavigationEnd) => {
       this.title = this.urlTitleMapping[event.urlAfterRedirects];
+      this.titleService.setTitle('INSA - ' + this.title);
       console.log(this.title);
     });
   }

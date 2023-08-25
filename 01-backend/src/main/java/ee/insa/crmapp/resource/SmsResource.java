@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/sms")
+@RequestMapping("api/sms")
 public class SmsResource {
     private final SmsService smsService;
     private final LogService logService;

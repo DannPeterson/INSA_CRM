@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = {"/payment-type"})
+@RequestMapping(path = {"api/payment-type"})
 public class PaymentTypeResource {
     private final PaymentTypeService paymentTypeService;
 

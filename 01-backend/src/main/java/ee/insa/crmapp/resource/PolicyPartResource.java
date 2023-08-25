@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = {"/policy-part"})
+@RequestMapping(path = {"api/policy-part"})
 public class PolicyPartResource {
     //AGENT
     public static final int AGENT_REPORT_BY_PART_DATE = 1;

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = {"/insurer"})
+@RequestMapping(path = {"api/insurer"})
 public class InsurerResource {
     private InsurerService insurerService;
 

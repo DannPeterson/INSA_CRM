@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = {"/percent"})
+@RequestMapping(path = {"api/percent"})
 public class PercentResource {
     private final InsurerTypeProfitPercentService percentService;
 

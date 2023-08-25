@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = {"/policy-type"})
+@RequestMapping(path = {"api/policy-type"})
 public class PolicyTypeResource {
     private PolicyTypeService policyTypeService;
 

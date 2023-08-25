@@ -13,7 +13,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping(path = {"/google"})
+@RequestMapping(path = {"api/google"})
 public class GoogleResource {
     private final SheetsService sheetsService;
 

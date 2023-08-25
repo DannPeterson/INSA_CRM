@@ -81,7 +81,7 @@
           <th mat-header-cell *matHeaderCellDef>
             Полис
           </th>
-          <td mat-cell *matCellDef="let part" class="truncate-text bold"> {{part.policy.policyNumber}} </td>
+          <td mat-cell *matCellDef="let part" class="truncate-text bold"  (dblclick)="openPolicyModal(part.policy, policy_modal)"> {{part.policy.policyNumber}} </td>
         </ng-container>
 
         <ng-container matColumnDef="startDate">

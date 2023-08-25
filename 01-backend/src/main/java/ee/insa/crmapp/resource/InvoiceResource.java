@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.File;
 
 @RestController
-@RequestMapping(path = {"/invoice"})
+@RequestMapping(path = {"api/invoice"})
 public class InvoiceResource {
     private InvoiceService invoiceService;
 

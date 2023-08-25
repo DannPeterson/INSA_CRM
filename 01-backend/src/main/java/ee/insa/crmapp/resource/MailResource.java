@@ -14,7 +14,7 @@ import javax.mail.MessagingException;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/mail")
+@RequestMapping("api/mail")
 public class MailResource {
     private final MailService mailService;
     private final LogService logService;
