@@ -142,12 +142,14 @@ public class PolicyService {
         bd = bd.setScale(2, RoundingMode.HALF_UP);
         double sumTotal = bd.doubleValue();
         policy.setSum(sumTotal);
+        if(policy.getClient().getId() == null) {
+            policy.setClient(clientService.save(policy.getClient()));
+        }
 
         policyRepository.save(policy);
 
         int duration = 12 / policy.getParts();
         LocalDate startDate = policy.getStartDate();
-        System.out.println(policy.getParts() + " " + policy.getSum());
         Double sumPerPart = policy.getSum() / policy.getParts();
         for (int i = 0; i < policy.getParts(); i++) {
             PolicyPart part = new PolicyPart();

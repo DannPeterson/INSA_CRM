@@ -55,12 +55,14 @@ export class PolicyPartService {
   }
 
   public searchInsurerControlParts(insurer: Insurer, policyType: PolicyType, date: Date, client: string, policy: string, type: number): Observable<PolicyPart[]> {
-    let dateStr = moment(date).add(1, 'day').utc().format().substring(0, 10);;
-    let queryParams = '';
+    let dateStr = moment(date).add(1, 'day').utc().format().substring(0, 10);
+    let queryParams = `date=${dateStr}&type=${type}`;
     if(policyType && policyType.id) queryParams += `&policyTypeId=${policyType.id}`;
     if(client) queryParams += `&client=${client}`;
     if(policy) queryParams += `&policy=${policy}`;
-    queryParams += `&date=${dateStr}&type=${type}`;
+    if(insurer && insurer.id) queryParams += `&insurer=${insurer.id}`;
+
+    console.log(queryParams);
     return this.http.get<PolicyPart[]>(`${this.host}/policy-part/insurer-control/${insurer.id}?${queryParams}`);
   }
 

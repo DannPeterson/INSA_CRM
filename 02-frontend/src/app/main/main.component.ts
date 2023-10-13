@@ -348,7 +348,7 @@ export class MainComponent implements OnInit {
     this.modalPolicyPartsExcelStatus = [];
     this.modalPolicyPartsDb = [];
     const modalPolicyPart = new PolicyPart();
-    // modalPolicyPart.part = 1;
+    modalPolicyPart.part = 1;
     modalPolicyPart.policy = this.modalPolicy;
     this.modalPolicyParts.push(modalPolicyPart);
     this.modalPolicyPartsExcelStatus.push(false);

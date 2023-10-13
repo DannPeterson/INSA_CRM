@@ -31,7 +31,11 @@ public interface PolicyRepository extends JpaRepository<Policy, Long> {
             "LEFT JOIN Invoice i ON pp.invoice.id = i.id " +
             "WHERE (COALESCE(:policyTypeId, 0) = 0 OR pt.id = :policyTypeId) " +
             "AND (COALESCE(:paymentTypeId, 0) = 0 OR pymt.id = :paymentTypeId OR pymt.id IS NULL) " +
-            "AND (COALESCE(:clientName, '') = '' OR LOWER(c.name) LIKE LOWER(CONCAT('%', :clientName, '%')) OR c IS NULL) " +
+            "AND (" +
+            "    COALESCE(:clientName, '') = '' AND (LOWER(c.name) IS NOT NULL OR c IS NULL) " +
+            "    OR" +
+            "    COALESCE(:clientName, '') != '' AND LOWER(c.name) LIKE LOWER(CONCAT('%', :clientName, '%'))" +
+            ")" +
             "AND (COALESCE(:object, '') = '' OR LOWER(p.object) LIKE LOWER(CONCAT('%', :object, '%'))) " +
             "AND (COALESCE(:invoiceNumber, '') = '' OR LOWER(i.invoiceNumber) LIKE LOWER(CONCAT('%', :invoiceNumber, '%'))) " +
             "AND (COALESCE(:policyNumber, '') = '' OR LOWER(p.policyNumber) LIKE LOWER(CONCAT('%', :policyNumber, '%'))) " +

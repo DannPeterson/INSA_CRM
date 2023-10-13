@@ -123,7 +123,7 @@ public class PolicyPartResource {
     List<PolicyPart> findPolicyPartsForInsurerControlReport(
             @PathVariable("insurerId") Long insurerId,
             @RequestParam(value = "policyTypeId", required = false) Long policyTypeId,
-            @RequestParam(value = "start") String dateUtc,
+            @RequestParam(value = "date") String dateUtc,
             @RequestParam(value = "client", required = false) String client,
             @RequestParam(value = "policy", required = false) String policy,
             @RequestParam(value = "type") int type
